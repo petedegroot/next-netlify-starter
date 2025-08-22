@@ -4,36 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Content Generator</title>
-    <!-- Use Tailwind CSS for modern, responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter font for clean typography -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            @apply bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4;
-        }
-        .modal {
-            @apply fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50;
-        }
-        .modal-content {
-            @apply bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md;
-        }
-        .splash-screen {
-            @apply fixed inset-0 bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center p-8 z-40;
-        }
-        .main-content {
-            @apply w-full max-w-2xl;
-        }
-        .research-box {
-            @apply p-4 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white resize-none mt-4;
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 flex flex-col items-center justify-center min-h-screen">
 
-    <!-- New Splash Screen for First-Time Use -->
-    <div id="splashScreen" class="splash-screen hidden">
+    <div id="splashScreen" class="hidden fixed inset-0 bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center p-8 z-40">
         <div class="max-w-md text-center">
             <h1 class="text-4xl font-bold mb-4">Ryan PHC GPT</h1>
             <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">Ryan PHC GPT is a custom AI assistant designed to help PHC managers quickly write professional emails, text messages, and statement of service emails with clarity and consistency.</p>
@@ -43,9 +24,8 @@
         </div>
     </div>
 
-    <!-- Modal for Initial User Info Setup -->
-    <div id="setupModal" class="modal hidden">
-        <div class="modal-content">
+    <div id="setupModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md">
             <h2 class="text-2xl font-bold text-center mb-4 text-gray-900 dark:text-white">Welcome, Team!</h2>
             <p class="text-center text-gray-600 dark:text-gray-400 mb-6">Let's get you set up. This info will be saved on your device for future use.</p>
             <div class="space-y-4">
@@ -68,12 +48,10 @@
         </div>
     </div>
 
-    <main id="mainContent" class="main-content hidden bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
-        <!-- Main title and description -->
+    <main id="mainContent" class="hidden w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
         <h1 class="text-3xl font-bold text-center mb-2 text-gray-900 dark:text-white">Content Generator</h1>
         <p class="text-center text-gray-600 dark:text-gray-400 mb-8">Select a document type and fill out the form to generate custom content.</p>
 
-        <!-- Document selection dropdown -->
         <div class="mb-6">
             <label for="docType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Document Type:</label>
             <select id="docType" class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out p-3">
@@ -83,19 +61,15 @@
             </select>
         </div>
 
-        <!-- Dynamic form fields container -->
         <div id="formFields" class="space-y-4">
-            <!-- These fields will be populated dynamically by JavaScript -->
-        </div>
+            </div>
 
-        <!-- Action buttons -->
         <div class="mt-8 flex justify-center">
             <button id="aiGenerateBtn" class="w-full sm:w-auto px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition-transform transform hover:scale-105">
                 Generate with AI
             </button>
         </div>
 
-        <!-- Generated content display area -->
         <div class="mt-8">
             <label for="output" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Generated Content:</label>
             <textarea id="output" rows="10" readonly class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white resize-none focus:outline-none"></textarea>
@@ -104,7 +78,6 @@
             </button>
         </div>
 
-        <!-- AI Revision Section -->
         <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Revise & Refine</h2>
             <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 items-end">
@@ -118,7 +91,6 @@
             </div>
         </div>
         
-        <!-- AI Research Section -->
         <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Need more info?</h2>
             <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 items-end">
@@ -131,14 +103,13 @@
                 </button>
             </div>
             <div id="researchOutputContainer" class="hidden">
-                 <textarea id="researchOutput" rows="6" readonly class="research-box"></textarea>
+                 <textarea id="researchOutput" rows="6" readonly class="w-full p-4 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white resize-none mt-4"></textarea>
                  <button id="copyResearchToDraftBtn" class="w-full mt-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    Copy Research to Draft
+                     Copy Research to Draft
                  </button>
             </div>
         </div>
 
-        <!-- Reset button -->
         <div class="mt-4 text-center">
             <button id="resetInfoBtn" class="text-sm text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-200 transition-colors">
                 Reset User Info
@@ -263,8 +234,12 @@ Your goal is to be a reliable and versatile tool for the user. When asked for in
 
                 if (type === 'clientEmail') {
                     const subjectField = document.getElementById('subject');
-                    const subjectFieldContainer = subjectField.parentElement;
+                    const subjectLabel = subjectField.previousElementSibling;
+                    const subjectContainer = subjectField.parentElement;
+
+                    // Hide subject field and its label initially
                     subjectField.style.display = 'none';
+                    subjectLabel.style.display = 'none';
 
                     const checkboxDiv = document.createElement('div');
                     checkboxDiv.className = 'flex items-center mt-2';
@@ -272,14 +247,17 @@ Your goal is to be a reliable and versatile tool for the user. When asked for in
                         <input type="checkbox" id="generateSubjectWithAI" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                         <label for="generateSubjectWithAI" class="ml-2 block text-sm text-gray-900 dark:text-gray-200">Generate subject with AI</label>
                     `;
-                    subjectFieldContainer.appendChild(checkboxDiv);
+                    // Insert checkbox after the (now hidden) subject field
+                    subjectContainer.insertBefore(checkboxDiv, subjectField.nextSibling);
 
                     const checkbox = checkboxDiv.querySelector('#generateSubjectWithAI');
                     checkbox.addEventListener('change', (e) => {
                         if (e.target.checked) {
                             subjectField.style.display = 'block';
+                            subjectLabel.style.display = 'block';
                         } else {
                             subjectField.style.display = 'none';
+                            subjectLabel.style.display = 'none';
                         }
                     });
                 }
@@ -436,6 +414,10 @@ ${originalMessage}`;
                         parts: [{ text: arboristPersonaPrompt }]
                     },
                     {
+                        role: "model",
+                        parts: [{ text: "Understood. I am ready to assist as a professional arborist assistant for Ryan Lawn & Tree."}]
+                    },
+                    {
                         role: "user",
                         parts: [{ text: prompt }]
                     }
@@ -447,9 +429,8 @@ ${originalMessage}`;
                 ];
 
                 const payload = { contents: chatHistory };
-                const apiKey = ""
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
+                const apiUrl = "/.netlify/functions/generate"; // THIS IS THE CORRECTED LINE
+
                 let retryCount = 0;
                 const maxRetries = 5;
                 const baseDelay = 1000;
@@ -463,7 +444,7 @@ ${originalMessage}`;
                         });
 
                         if (response.status === 429) {
-                            const delay = baseDelay * Math.pow(2, retryCount);
+                            const delay = baseDelay * Math.pow(2, retryCount) + Math.random() * 1000;
                             retryCount++;
                             await new Promise(resolve => setTimeout(resolve, delay));
                             continue;
@@ -477,11 +458,19 @@ ${originalMessage}`;
                         if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
                             return result.candidates[0].content.parts[0].text;
                         } else {
+                            console.error("Invalid response structure from API:", result);
+                            // Check for safety ratings or other block reasons
+                            if (result.candidates && result.candidates.length > 0 && result.candidates[0].finishReason) {
+                                return `Content generation failed. Reason: ${result.candidates[0].finishReason}`;
+                            }
                             throw new Error('No content returned from API.');
                         }
                     } catch (error) {
                         console.error('API call failed:', error);
-                        throw error;
+                        if (retryCount >= maxRetries - 1) {
+                           throw error;
+                        }
+                        retryCount++;
                     }
                 }
                 throw new Error('Maximum retries reached.');
@@ -498,15 +487,25 @@ ${originalMessage}`;
             };
             
             const initializeApp = () => {
-                splashScreen.classList.remove('hidden');
-                mainContent.classList.add('hidden');
-                continueBtn.addEventListener('click', () => {
+                const hasSeenSplash = localStorage.getItem('splashScreenSeen');
+                if (!hasSeenSplash) {
+                    splashScreen.classList.remove('hidden');
+                    mainContent.classList.add('hidden');
+                    continueBtn.addEventListener('click', () => {
+                        splashScreen.classList.add('hidden');
+                        mainContent.classList.remove('hidden');
+                        localStorage.setItem('splashScreenSeen', 'true');
+                        if (!userName || !userEmail || !userPhone) {
+                            showSetupModal();
+                        }
+                    }, { once: true });
+                } else {
                     splashScreen.classList.add('hidden');
                     mainContent.classList.remove('hidden');
                     if (!userName || !userEmail || !userPhone) {
                         showSetupModal();
                     }
-                });
+                }
 
                 renderForm(docTypeSelect.value);
             };
@@ -539,11 +538,12 @@ ${originalMessage}`;
                 localStorage.removeItem('userEmail');
                 localStorage.removeItem('userPhone');
                 localStorage.removeItem('splashScreenSeen');
-                alert('User information and splash screen preference have been reset. The setup form will appear the next time you open the app.');
+                alert('User information has been reset.');
                 userName = '';
                 userEmail = '';
                 userPhone = '';
-                initializeApp();
+                // Reload the page to re-trigger the setup flow
+                window.location.reload();
             });
 
             docTypeSelect.addEventListener('change', (e) => renderForm(e.target.value));
